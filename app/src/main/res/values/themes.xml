@@ -1,9 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.MyApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimary">#050505</item>
         <item name="colorSecondary">@color/secondary</item>
-        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:statusBarColor">#050505</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
     <style name="Theme.MyApp" parent="Base.Theme.MyApp" />
