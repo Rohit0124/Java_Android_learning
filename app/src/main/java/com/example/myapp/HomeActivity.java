@@ -17,7 +17,7 @@ public class HomeActivity extends AppCompatActivity {
         Button btnMusic = findViewById(R.id.btnMusic);
 
         btnMusic.setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, MusicActivity.class));
+            startActivity(new Intent(HomeActivity.this, MusicHomeActivity.class));
         });
     }
 }

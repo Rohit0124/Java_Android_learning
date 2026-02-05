@@ -7,7 +7,7 @@ public class ApiClient {
 
     private static Retrofit retrofit;
 
-    public static Retrofit getInstance() {
+    public static Retrofit getClient() {
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()

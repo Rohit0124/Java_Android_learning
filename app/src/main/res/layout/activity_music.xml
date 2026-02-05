@@ -1,75 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#050505"
-    android:layout_margin="0dp"
-    android:padding="0dp"
-    android:layout_height="match_parent">
+    android:background="#050505">
 
+    <!-- TOP BAR -->
     <LinearLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingStart="10dp"
-        android:layout_marginTop="30dp"
-        android:paddingEnd="10dp">
+        android:padding="10dp">
 
-        <!-- BACK -->
         <TextView
             android:id="@+id/btnBack"
             android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:text="←"
-            android:textStyle="bold"
+            android:textColor="#fff"
             android:textSize="22sp"
-            android:textColor="#ffffff"/>
+            android:gravity="center"/>
 
-        <!-- SPACE -->
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
-        <!-- RIGHT ICONS -->
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/btnFav"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:text="🤍"
+            android:backgroundTint="#000"
+            android:textSize="20sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/btnPlaylist"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:text="☰"
+            android:textSize="22sp"
+            android:textColor="#fff"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/btnMore"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/btnFav"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="❤"
-                android:textSize="20sp"
-                android:textColor="#ff4444"/>
-
-            <TextView
-                android:id="@+id/btnPlaylist"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="☰"
-                android:textSize="22sp"
-                android:textColor="#ffffff"/>
-
-            <TextView
-                android:id="@+id/btnMore"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="⋮"
-                android:textSize="26sp"
-                app:popupTheme="@style/PopupMenuStyle"/>
-        </LinearLayout>
-
+            android:text="⋮"
+            android:textSize="26sp"
+            app:popupTheme="@style/PopupMenuStyle"/>
     </LinearLayout>
 
+    <!-- PLAYER AREA -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -100,6 +88,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:text="Radhe Radhe"
+            android:textColor="#fff"
             android:textAlignment="center"
             android:textSize="26sp" />
 
@@ -153,36 +142,41 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:padding="0dp"
-                android:text="↻︎"
                 android:textSize="26sp"
+                android:text="↻︎"
                 android:layout_marginLeft="20dp"/>
 
         </LinearLayout>
 
-        <!-- SONG LIST -->
-        <LinearLayout
-            android:id="@+id/songListLayout"
+    </LinearLayout>
+
+    <!-- PLAYLIST OVERLAY -->
+    <LinearLayout
+        android:id="@+id/songListLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/topBar"
+        android:layout_alignParentBottom="true"
+        android:background="#CC000000"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:elevation="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Songs"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:padding="12dp"/>
+
+        <ListView
+            android:id="@+id/songList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#111"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Songs"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-
-            <ListView
-                android:id="@+id/songList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="#333"
+            android:dividerHeight="1dp"/>
     </LinearLayout>
 
 </RelativeLayout>

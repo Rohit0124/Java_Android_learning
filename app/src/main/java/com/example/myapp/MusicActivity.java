@@ -1,7 +1,6 @@
 package com.example.myapp;
 import com.example.myapp.model.Song;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.view.ContextThemeWrapper;
@@ -34,11 +33,9 @@ public class MusicActivity extends AppCompatActivity {
     boolean isFav = false;
     boolean isShuffle = false;
     boolean isRepeat = false;
-
     Handler handler = new Handler();
     ApiService apiService;
 
-    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,25 +58,17 @@ public class MusicActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.seekBar);
         songList = findViewById(R.id.songList);
 
-        apiService = ApiClient.getInstance().create(ApiService.class);
+        apiService = ApiClient.getClient().create(ApiService.class);
 
         loadSongsFromApi();
 
         //  ← Back
         btnBack.setOnClickListener(v -> finish());
 
-        //  ⋮ Show Playlist 2nd method
-//        btnPlaylist.setOnClickListener(v -> {
-//            isListVisible = !isListVisible;
-//            songListLayout.setVisibility(isListVisible ? View.VISIBLE : View.GONE);
-//        });
-
+        //  ⋮ Show Playlist
         btnPlaylist.setOnClickListener(v -> {
-            if (songListLayout.getVisibility() == View.GONE) {
-                songListLayout.setVisibility(View.VISIBLE);
-            } else {
-                songListLayout.setVisibility(View.GONE);
-            }
+            isListVisible = !isListVisible;
+            songListLayout.setVisibility(isListVisible ? View.VISIBLE : View.GONE);
         });
 
         //  Fav
@@ -132,10 +121,10 @@ public class MusicActivity extends AppCompatActivity {
 
             if (mediaPlayer.isPlaying()) {
                 mediaPlayer.pause();
-                btnPlay.setText(R.drawable.play);
+                btnPlay.setText("▶");
             } else {
                 mediaPlayer.start();
-                btnPlay.setText(R.drawable.pause);
+                btnPlay.setText("⏸");
                 updateSeekBar();
             }
         });
@@ -224,7 +213,6 @@ public class MusicActivity extends AppCompatActivity {
     }
 
     // ================= PLAY SONG =================
-    @SuppressLint("ResourceType")
     void playSong() {
         try {
             if (mediaPlayer != null)
@@ -237,7 +225,7 @@ public class MusicActivity extends AppCompatActivity {
 
             songName.setText(songs.get(current).getTitle());
             seekBar.setMax(mediaPlayer.getDuration());
-            btnPlay.setText(R.drawable.pause2);
+            btnPlay.setText("⏸");
 
             mediaPlayer.setOnCompletionListener(mp -> {
                 if (isRepeat) {
